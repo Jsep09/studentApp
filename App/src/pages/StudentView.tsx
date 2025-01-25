@@ -1,7 +1,8 @@
-import React from "react";
+import { useParams } from "react-router-dom";
 
-const StudentViews = () => {
-  return <div>StudentViews</div>;
+const StudentView = () => {
+  const { id } = useParams();
+  return <div>StudentViews {id}</div>;
 };
 
-export default StudentViews;
+export default StudentView;

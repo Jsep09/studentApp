@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Control = () => {
   return (
     <div className="flex justify-between mb-5">
@@ -82,6 +84,7 @@ const Control = () => {
               placeholder="Search..."
               required
             />
+
             <button
               type="submit"
               className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg "
@@ -106,9 +109,11 @@ const Control = () => {
           </div>
         </div>
       </form>
-      <button className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-500 cursor-pointer">
-        Add New Student
-      </button>
+      <Link to={`/create`}>
+        <button className="bg-blue-600 text-white p-2 rounded-md hover:bg-blue-500 cursor-pointer">
+          Add New Student
+        </button>
+      </Link>
     </div>
   );
 };

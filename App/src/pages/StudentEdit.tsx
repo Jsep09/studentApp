@@ -1,7 +1,18 @@
-import React from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const StudentEdit = () => {
-  return <div>StudentEdit</div>;
+  const [studentData, setStudentData] = useState({
+    id: Number,
+    firstName: "",
+    lastName: "",
+    age: "",
+    gender: "",
+    major: "",
+    gpa: Number,
+  });
+  const { id } = useParams();
+  return <div>StudentEdit {id}</div>;
 };
 
 export default StudentEdit;
