@@ -5,7 +5,7 @@ import { fetchStudentDetail } from "../reducers/StudentSlice";
 const StudentView = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const studentDetail = useAppSelector((state) => state.student.currentUser);
+  const studentDetail = useAppSelector((state) => state.student.currentStudent);
 
   useEffect(() => {
     if (id) {
