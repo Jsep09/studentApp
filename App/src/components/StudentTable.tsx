@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../hooks";
-
+import { Link } from "react-router-dom";
 import { fetchStudents } from "../reducers/StudentSlice";
 
 const StudentTable = () => {
@@ -35,7 +35,7 @@ const StudentTable = () => {
         </thead>
         {students.map((items) => {
           return (
-            <tbody>
+            <tbody key={items.id}>
               <tr className="odd:bg-white even:bg-gray-100">
                 <th
                   scope="row"
@@ -56,7 +56,7 @@ const StudentTable = () => {
                 </td>
                 <td className="px-6 py-4  border border-slate-300">
                   <div className="but-group flex justify-around w-full">
-                    <a href="/view">
+                    <Link to={`/view/${items.id}`}>
                       <svg
                         className="w-[22px] h-[22px] text-gray-800"
                         aria-hidden="true"
@@ -72,7 +72,7 @@ const StudentTable = () => {
                           clipRule="evenodd"
                         />
                       </svg>
-                    </a>
+                    </Link>
                     <a href="/edit">
                       <svg
                         className="w-[22px] h-[22px] text-gray-800"
