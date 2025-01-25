@@ -1,0 +1,49 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "firstName": "Nicha",
+      "lastName": "Suwan",
+      "age": 20,
+      "gender": "Female",
+      "major": "Computer Science",
+      "gpa": 3.85
+    },
+    {
+      "id": 2,
+      "firstName": "Anan",
+      "lastName": "Pongchai",
+      "age": 22,
+      "gender": "Male",
+      "major": "Electrical Engineering",
+      "gpa": 3.65
+    },
+    {
+      "id": 3,
+      "firstName": "Waranya",
+      "lastName": "Klaew",
+      "age": 21,
+      "gender": "Female",
+      "major": "Business Administration",
+      "gpa": 3.9
+    },
+    {
+      "id": 4,
+      "firstName": "Phonchai",
+      "lastName": "Thongdee",
+      "age": 23,
+      "gender": "Male",
+      "major": "Mechanical Engineering",
+      "gpa": 3.4
+    },
+    {
+      "id": 5,
+      "firstName": "Supaporn",
+      "lastName": "Chatchai",
+      "age": 19,
+      "gender": "Female",
+      "major": "Design",
+      "gpa": 3.75
+    }
+  ]
+}
