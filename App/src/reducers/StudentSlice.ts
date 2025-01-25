@@ -28,18 +28,31 @@ export const fetchStudentDetail = createAsyncThunk(
   }
 );
 
+export const deleteStudent = createAsyncThunk(
+  "student/delete",
+  async (id: number) => {
+    try {
+      await axios.delete(apiUrl + `/${id}`);
+      return id; // ส่ง id ที่ถูกลบไป
+    } catch (error) {
+      console.log(error);
+      throw new Error();
+    }
+  }
+);
+
 // สร้าง Interface สำหรับ slice state นั้นก็คือ initialState
 
 interface studentSlice {
   students: Student[];
-  currentUser: any | null;
+  currentStudent: any | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: studentSlice = {
   students: [],
-  currentUser: null,
+  currentStudent: null,
   loading: false,
   error: null,
 };
@@ -65,14 +78,31 @@ const studentSlice = createSlice({
       })
       .addCase(fetchStudentDetail.pending, (state) => {
         state.loading = true;
-        state.currentUser = null; // ล้างข้อมูลเดิม
+        state.currentStudent = null; // ล้างข้อมูลเดิม
       })
       .addCase(fetchStudentDetail.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentUser = action.payload; // อัปเดต currentUser ด้วยข้อมูลที่ได้จาก API
+        state.currentStudent = action.payload; // อัปเดต currentStudent ด้วยข้อมูลที่ได้จาก API
         state.error = null;
       })
       .addCase(fetchStudentDetail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || "Failed to fetch student detail";
+      })
+
+      .addCase(deleteStudent.pending, (state) => {
+        state.loading = true;
+        state.currentStudent = null;
+      })
+
+      .addCase(deleteStudent.fulfilled, (state, action) => {
+        state.loading = false;
+        state.students = state.students.filter(
+          (item) => item.id !== action.payload //id ส่งมาทาง action.payload
+        );
+        state.error = null;
+      })
+      .addCase(deleteStudent.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Failed to fetch student detail";
       });
@@ -81,8 +111,8 @@ const studentSlice = createSlice({
 
 // Selectors
 export const selectStudents = (state: RootState) => state.student.students;
-export const selectCurrentUser = (state: RootState) =>
-  state.student.currentUser;
+export const selectcurrentStudent = (state: RootState) =>
+  state.student.currentStudent;
 export const selectLoading = (state: RootState) => state.student.loading;
 export const selectError = (state: RootState) => state.student.error;
 

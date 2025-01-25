@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { Link } from "react-router-dom";
-import { fetchStudents } from "../reducers/StudentSlice";
+import { fetchStudents, deleteStudent } from "../reducers/StudentSlice";
 
 const StudentTable = () => {
   const dispatch = useAppDispatch();
@@ -11,6 +11,15 @@ const StudentTable = () => {
     dispatch(fetchStudents());
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log(students);
+  }, [students]);
+
+  const handleDelete = (id: number) => {
+    if (window.confirm("Are you sure you want to delete this student?")) {
+      dispatch(deleteStudent(id)); // ลบ student ตาม id
+    }
+  };
   return (
     <div className="relative overflow-x-auto  ">
       <table className="w-full text-sm text-left rtl:text-right border border-slate-300">
@@ -95,7 +104,10 @@ const StudentTable = () => {
                         />
                       </svg>
                     </a>
-                    <a href="/trash">
+                    <button
+                      onClick={() => handleDelete(items.id)}
+                      className="cursor-pointer"
+                    >
                       <svg
                         className="w-[22px] h-[22px] text-gray-800"
                         aria-hidden="true"
@@ -111,7 +123,7 @@ const StudentTable = () => {
                           clipRule="evenodd"
                         />
                       </svg>
-                    </a>
+                    </button>
                   </div>
                 </td>
               </tr>
