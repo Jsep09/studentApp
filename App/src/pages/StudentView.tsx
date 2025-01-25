@@ -13,14 +13,23 @@ const StudentView = () => {
     }
   }, [dispatch, id]);
 
-  console.log("Student Detail from Redux State:", studentDetail);
-
   return (
-    <div className="container min-h-screen max-w-7xl m-auto p-15">
-      <h1>Student Details</h1>
-      <p>ID: {studentDetail?.id}</p>
-      <p>Name: {studentDetail?.firstName}</p>
-      <p>lasname: {studentDetail?.lastName}</p>
+    <div className="container flex min-h-screen max-w-3xl m-auto items-center">
+      <div className="bg-blue-600 w-full h-fit p-16 rounded-2xl  ">
+        <div className="w-full flex justify-center">
+          <div className="bg-white w-72 h-72 rounded-full flex justify-center items-center text-4xl  hover:scale-105 duration-300">
+            <p>{studentDetail?.firstName}</p>
+          </div>
+        </div>
+        <div className="w-full flex justify-center flex-col mt-10 text-white ">
+          <p className="text-3xl">Fistname : {studentDetail?.firstName}</p>
+          <p className="text-3xl">Lastname : {studentDetail?.lastName}</p>
+          <p className="text-3xl">Age : {studentDetail?.age}</p>
+          <p className="text-3xl">Gender : {studentDetail?.gender}</p>
+          <p className="text-3xl">Major : {studentDetail?.major}</p>
+          <p className="text-3xl">GPA : {studentDetail?.gpa}</p>
+        </div>
+      </div>
     </div>
   );
 };
