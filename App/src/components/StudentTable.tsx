@@ -5,15 +5,11 @@ import { fetchStudents, deleteStudent } from "../reducers/StudentSlice";
 
 const StudentTable = () => {
   const dispatch = useAppDispatch();
-  const students = useAppSelector((state) => state.student.students);
+  const students = useAppSelector((state) => state.student.filteredStudents);
 
   useEffect(() => {
     dispatch(fetchStudents());
   }, [dispatch]);
-
-  useEffect(() => {
-    console.log(students);
-  }, [students]);
 
   const handleDelete = (id: number) => {
     if (window.confirm("Are you sure you want to delete this student?")) {

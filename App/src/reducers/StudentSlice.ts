@@ -58,6 +58,7 @@ export const createStudent = createAsyncThunk(
 
 interface studentSlice {
   students: Student[];
+  filteredStudents: Student[];
   currentStudent: any | null;
   loading: boolean;
   error: string | null;
@@ -65,6 +66,7 @@ interface studentSlice {
 
 const initialState: studentSlice = {
   students: [],
+  filteredStudents: [],
   currentStudent: null,
   loading: false,
   error: null,
@@ -73,7 +75,18 @@ const initialState: studentSlice = {
 const studentSlice = createSlice({
   name: "student",
   initialState,
-  reducers: {},
+  reducers: {
+    // ฟังก์ชันสำหรับกรองข้อมูลนักเรียนที่ตรงกับคำค้น
+    filterBySearch: (state, action) => {
+      const searchText = action.payload.toLowerCase();
+      state.filteredStudents = state.students.filter(
+        (student) =>
+          student.firstName.toLowerCase().includes(searchText) ||
+          student.lastName.toLowerCase().includes(searchText)
+      );
+    },
+  },
+
   extraReducers(builder) {
     builder
       // fetch student
@@ -85,6 +98,7 @@ const studentSlice = createSlice({
         state.loading = false;
         state.error = null;
         state.students = action.payload;
+        state.filteredStudents = action.payload;
       })
       .addCase(fetchStudents.rejected, (state, action) => {
         state.loading = false;
@@ -142,5 +156,7 @@ const studentSlice = createSlice({
 export const selectStudents = (state: RootState) => state.student.students;
 export const selectcurrentStudent = (state: RootState) =>
   state.student.currentStudent;
+
+export const { filterBySearch } = studentSlice.actions;
 
 export default studentSlice.reducer;
