@@ -54,6 +54,19 @@ export const createStudent = createAsyncThunk(
   }
 );
 
+export const EditStudent = createAsyncThunk(
+  "edit",
+  //createAsyncThunk รับของเป็น object
+  async ({ student, id }: { student: Student; id: string }) => {
+    try {
+      const response = await axios.patch(apiUrl + `/${id}`, student);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      throw new Error();
+    }
+  }
+);
 // สร้าง Interface สำหรับ slice state นั้นก็คือ initialState
 
 interface studentSlice {
@@ -146,6 +159,20 @@ const studentSlice = createSlice({
         state.error = null;
       })
       .addCase(createStudent.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || "Failed to create student";
+      })
+
+      //Edit student
+      .addCase(EditStudent.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(EditStudent.fulfilled, (state, action) => {
+        state.loading = false;
+        state.students = action.payload; // น่าจะใช่
+        state.error = null;
+      })
+      .addCase(EditStudent.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Failed to create student";
       });

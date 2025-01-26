@@ -78,7 +78,7 @@ const StudentTable = () => {
                         />
                       </svg>
                     </Link>
-                    <a href="/edit">
+                    <Link to={`edit/${items.id}`}>
                       <svg
                         className="w-[22px] h-[22px] text-gray-800"
                         aria-hidden="true"
@@ -99,7 +99,7 @@ const StudentTable = () => {
                           clipRule="evenodd"
                         />
                       </svg>
-                    </a>
+                    </Link>
                     <button
                       onClick={() => handleDelete(items.id)}
                       className="cursor-pointer"
