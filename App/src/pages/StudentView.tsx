@@ -15,13 +15,13 @@ const StudentView = () => {
 
   return (
     <div className="container flex min-h-screen max-w-3xl m-auto items-center">
-      <div className="bg-blue-600 w-full h-fit p-16 rounded-2xl  ">
+      <div className="w-full h-fit p-16 rounded-2xl  shadow-[0px_0px_15px_rgba(0,0,0,0.25)]">
         <div className="w-full flex justify-center">
-          <div className="bg-white w-72 h-72 rounded-full flex justify-center items-center text-4xl  hover:scale-105 duration-300">
+          <div className="bg-slate-200 w-72 h-72 rounded-full flex justify-center items-center text-4xl  hover:scale-105 duration-300">
             <p>{studentDetail?.firstName}</p>
           </div>
         </div>
-        <div className="w-full flex justify-center flex-col mt-10 text-white ">
+        <div className="w-full flex justify-center flex-col mt-10 ">
           <p className="text-3xl">Fistname : {studentDetail?.firstName}</p>
           <p className="text-3xl">Lastname : {studentDetail?.lastName}</p>
           <p className="text-3xl">Age : {studentDetail?.age}</p>
