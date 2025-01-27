@@ -7,15 +7,16 @@ const StudentTable = () => {
   const dispatch = useAppDispatch();
   const students = useAppSelector((state) => state.student.filteredStudents);
 
-  useEffect(() => {
-    dispatch(fetchStudents());
-  }, [dispatch]);
-
   const handleDelete = (id: number) => {
     if (window.confirm("Are you sure you want to delete this student?")) {
       dispatch(deleteStudent(id)); // ลบ student ตาม id
     }
   };
+
+  useEffect(() => {
+    dispatch(fetchStudents());
+  }, [dispatch, handleDelete]);
+
   return (
     <div className="relative overflow-x-auto  ">
       <table className="w-full text-sm text-left rtl:text-right border border-slate-300">
