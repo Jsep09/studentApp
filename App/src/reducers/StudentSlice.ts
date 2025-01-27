@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Student } from "../studentsInterface";
-import { RootState } from "../store";
+
 import axios from "axios";
 
 const apiUrl = "http://localhost:8080/students";
@@ -178,11 +178,6 @@ const studentSlice = createSlice({
       });
   },
 });
-
-// Selectors
-export const selectStudents = (state: RootState) => state.student.students;
-export const selectcurrentStudent = (state: RootState) =>
-  state.student.currentStudent;
 
 export const { filterBySearch } = studentSlice.actions;
 
